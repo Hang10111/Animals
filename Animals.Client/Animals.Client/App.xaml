@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<unity:PrismApplication
+    xmlns:unity="http://prismlibrary.com"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Animals.Client.App">
+    <unity:PrismApplication.Resources>
+
+    </unity:PrismApplication.Resources>
+</unity:PrismApplication>
