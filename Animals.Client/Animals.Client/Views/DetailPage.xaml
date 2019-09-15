@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Animals.Client.Views.DetailPage"
              Title="{Binding Title}">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="350" />
@@ -54,12 +53,7 @@
                     <Label Text="Nội trữ mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
                     <Label Text="{Binding NoiTruMau}"/>
                 </StackLayout>
-                
             </StackLayout>
-            
         </ScrollView>
-        
-       
     </Grid>
-
 </ContentPage>
