@@ -1,59 +1,50 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:mapsui="clr-namespace:Mapsui.UI.Forms;assembly=Mapsui.UI.Forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layers="clr-namespace:Mapsui.Layers;assembly=Mapsui"
              x:Class="Animals.Client.Views.DetailPage"
              Title="{Binding Title}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="350" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="550" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <ScrollView>
-            <StackLayout Padding="10"  BackgroundColor="#F5F5F5">
-                <Image Source ="{Binding ImageURL}"    
-                       Grid.Row="0"
-                       Grid.Column="0"
+    <ScrollView>
+        <StackLayout Padding="10"  BackgroundColor="#F5F5F5">
+            <Image Source ="{Binding ImageURL}"   
                        x:Name="img"
                        HeightRequest  ="300" 
                        WidthRequest ="300"
                        Aspect ="AspectFill"
                        HorizontalOptions="Center"
                        BackgroundColor="#CAE5E8"></Image>
-                <StackLayout Grid.Row="1"
-                             Grid.Column="0"
-                             Padding="10" >
-                    <Label Text="Tên khoa học:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding TenKh}"/>
-                    <Label Text="Tên thường: " HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding TenThuong}"/>
-                    <Label Text="Tên tiếng anh:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding TenTiengAnh}"/>
-                    <Label Text="Thuộc chi:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold" />
-                    <Label Text="{Binding ThuocChi}"/>
-                    <Label Text="Phân bố:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding PhanBo}"/>
-                    <Label Text="Đặc điểm hình thái" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding DdHinhThai}"/>
-                    <Label Text="Đặc điểm sinh học" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding DdSinhHoc}"/>
-                    <Label Text="Tập tính sinh sản" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding TtSinhSan}"/>
-                    <Label Text="Môi trường sống:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding MtSong}"/>
-                    <Label Text="Độ nguy hiểm:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding DoNguyHiem}"/>
-                    <Label Text="Giá trị sử dụng:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding GtSuDung}"/>
-                    <Label Text="Tình trạng mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding TinhTrangMau}"/>
-                    <Label Text="Nội trữ mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
-                    <Label Text="{Binding NoiTruMau}"/>
-                </StackLayout>
+            <StackLayout Padding="10" >
+                <Label Text="Tên khoa học:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding TenKh}"/>
+                <Label Text="Tên thường: " HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding TenThuong}"/>
+                <Label Text="Tên tiếng anh:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding TenTiengAnh}"/>
+                <Label Text="Thuộc chi:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold" />
+                <Label Text="{Binding ThuocChi}"/>
+                <Label Text="Phân bố:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding PhanBo}"/>
+                <Label Text="Đặc điểm hình thái" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding DdHinhThai}"/>
+                <Label Text="Đặc điểm sinh học" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding DdSinhHoc}"/>
+                <Label Text="Tập tính sinh sản" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding TtSinhSan}"/>
+                <Label Text="Môi trường sống:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding MtSong}"/>
+                <Label Text="Độ nguy hiểm:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding DoNguyHiem}"/>
+                <Label Text="Giá trị sử dụng:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding GtSuDung}"/>
+                <Label Text="Tình trạng mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding TinhTrangMau}"/>
+                <Label Text="Nội trữ mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                <Label Text="{Binding NoiTruMau}"/>
             </StackLayout>
-        </ScrollView>
-    </Grid>
+            <mapsui:MapView x:Name="mapView"
+                            HeightRequest  ="300" 
+                            WidthRequest ="300"/>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>
