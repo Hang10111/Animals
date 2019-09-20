@@ -1,5 +1,4 @@
 ﻿using Animals.Client.Models;
-using Prism.Commands;
 using Prism.Navigation;
 
 namespace Animals.Client.ViewModels
@@ -20,8 +19,8 @@ namespace Animals.Client.ViewModels
         public string TinhTrangMau { get => _tinhTrangMau; set => SetProperty(ref _tinhTrangMau, value); }
         public string NoiTruMau { get => _noiTruMau; set => SetProperty(ref _noiTruMau, value); }
         public string ImageURL { get => _imageURL; set => SetProperty(ref _imageURL, value); }
+
         private AnimalItem _animalItem;
-        
         private string _tenKh = string.Empty;
         private string _tenThuong = string.Empty;
         private string _tenTiengAnh = string.Empty;
@@ -37,25 +36,32 @@ namespace Animals.Client.ViewModels
         private string _tinhTrangMau = string.Empty;
         private string _noiTruMau = string.Empty;
 
-        public DelegateCommand ShowDetail { get; set; }
-       
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Detail";
             _animalItem = new AnimalItem();
-          
+            InitializeCommand();
         }
+
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
             if (parameters.ContainsKey("sinhvat"))
             {
                 _animalItem = (AnimalItem)parameters["sinhvat"];
-                //VungDiaLi vungDiaLi = new VungDiaLi() { ToaDo = new MySql.Data.Types.MySqlGeometry(31.267153, -97.7430608) };
-                //Locations.Add(new MapMarker() { Label = Detail.TenThuong, Latitude = vungDiaLi.ToaDo.Value.XCoordinate.ToString(), Longitude = vungDiaLi.ToaDo.Value.YCoordinate.ToString() });
                 OnEntityChanged();
             }
         }
+
+        private void InitializeCommand()
+        {
+        }
+
+        private void HandleShowDetailCommand()
+        {
+            //Show detail later
+        }
+
         private void OnEntityChanged()
         {
             TenKh = _animalItem.TenKh;
@@ -72,8 +78,6 @@ namespace Animals.Client.ViewModels
             TinhTrangMau = _animalItem.TinhTrangMau;
             NoiTruMau = _animalItem.NoiTruMau;
             ImageURL = _animalItem.ImageURL;
-
         }
-
     }
 }
