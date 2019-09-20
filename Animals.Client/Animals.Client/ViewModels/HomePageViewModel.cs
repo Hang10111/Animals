@@ -7,7 +7,7 @@ using Animals.Client.Services;
 using System.Linq;
 using System.Threading.Tasks;
 using Animals.Client.Models;
-using System;
+using Xamarin.Forms;
 
 namespace Animals.Client.ViewModels
 {
@@ -46,9 +46,14 @@ namespace Animals.Client.ViewModels
             ShowDetailCommand = new DelegateCommand<AnimalItem>(HandleShowDetailCommand);
         }
 
-        private async void HandleRefreshCommand()
+        private void HandleRefreshCommand()
         {
-            DataSource = await LoadHomeListViewData();
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                IsBusy = true;
+                DataSource = await LoadHomeListViewData();
+                IsBusy = false;
+            });
         }
 
         private async void HandleSearchCommand(string obj)

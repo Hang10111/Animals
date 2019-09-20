@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Animals.Client
+﻿namespace Animals.Client
 {
     public class Configuration
     {

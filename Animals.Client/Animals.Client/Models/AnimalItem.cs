@@ -20,7 +20,6 @@ namespace Animals.Client.Models
         public string NoiTruMau => _sinhVat.NoiTruMau;
         public short LaDv => _sinhVat.LaDv != null ? _sinhVat.LaDv.Value : (short)0;
         public string TtBaoTon => _sinhVat.TtBaoTon;
-        public int ToaDo => _sinhVat.ToaDo !=null ? _sinhVat.ToaDo.Value : 0;
         public string ImageURL => _hinh.DuongDan;
         private readonly SinhVat _sinhVat;
         private readonly Hinh _hinh;
