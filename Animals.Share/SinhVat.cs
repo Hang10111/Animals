@@ -23,7 +23,6 @@ namespace Animals.Share
         public string NoiTruMau { get; set; }
         public short? LaDv { get; set; }
         public string TtBaoTon { get; set; }
-        public int? ToaDo { get; set; }
         public TinTuc IdSinhVatNavigation { get; set; }
         public PhanLoai ThuocChiNavigation { get; set; }
         public TtBaoTonIucn TtBaoTonNavigation { get; set; }

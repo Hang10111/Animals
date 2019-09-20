@@ -197,10 +197,6 @@ namespace Animals.Server.Services
                     .HasMaxLength(1000)
                     .IsUnicode(false);
 
-                entity.Property(e => e.ToaDo)
-                    .HasColumnName("toa_do")
-                    .HasColumnType("int(11)");
-
                 entity.Property(e => e.TtBaoTon)
                     .HasColumnName("tt_bao_ton")
                     .HasMaxLength(2)
@@ -270,6 +266,10 @@ namespace Animals.Server.Services
                     .HasColumnName("tieu_de")
                     .HasMaxLength(300)
                     .IsUnicode(false);
+
+                entity.Property(e => e.TimeStamp)
+                    .HasColumnName("time-stamp")
+                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                 entity.Property(e => e.TomTat)
                     .HasColumnName("tom_tat")

@@ -30,8 +30,7 @@ namespace Animals.Server.Controllers
             foreach (var item in sinhVat)
             {
                 var hinh = Services.DataBaseService.DataBase.Hinh.FirstOrDefault(e => e.Idtin == item.IdSinhVat);
-                var result = new Hinh() { DuongDan = hinh.DuongDan.ConvertToURLString() };
-                Result.Add(new Tuple<SinhVat, Hinh>(item, result));
+                Result.Add(new Tuple<SinhVat, Hinh>(item, hinh));
             }
             return this.OKResult(Result);
         }

@@ -17,6 +17,7 @@ namespace Animals.Share
         public string NoiDung { get; set; }
         public int? IdChuDe { get; set; }
         public string LoaiTin { get; set; }
+        public DateTime? TimeStamp { get; set; }
         public short? DuyetTin { get; set; }
 
         public ChuDe IdChuDeNavigation { get; set; }
