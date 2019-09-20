@@ -1,75 +1,84 @@
 ﻿using System.Windows.Input;
-using Xamarin.Forms;
 using ZXing.Net.Mobile.Forms;
-using Animals.Share;
 using System.Collections.ObjectModel;
 using Prism.Navigation;
 using Prism.Commands;
 using Animals.Client.Services;
 using System.Linq;
-using System;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using Animals.Client.Models;
+using Xamarin.Forms;
 
 namespace Animals.Client.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-        ZXingScannerPage scanPage;
-        private ObservableCollection<AnimalItem> _dataSource;
-        public ICommand CmdScan { get; }
-        public ICommand SearchCommand { get; private set; }
-        public ICommand ShowDetail { get; set; }
+        public ObservableCollection<AnimalItem> DataSource { get => _dataSource; set => SetProperty(ref _dataSource, value, () => { RaisePropertyChanged(nameof(IsVisibleRefresh)); }); }
+        public bool IsVisibleRefresh => DataSource.Count <= 0;
 
-        public ObservableCollection<AnimalItem> DataSource { get => _dataSource; set => SetProperty(ref _dataSource, value); }
+        public ICommand ScanQRCommand { get; private set; }
+        public ICommand SearchCommand { get; private set; }
+        public ICommand ShowDetailCommand { get; private set; }
+        public ICommand RefreshCommand { get; private set; }
+
+        private readonly ZXingScannerPage _scanPage;
+        private ObservableCollection<AnimalItem> _dataSource;
+
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            _scanPage = new ZXingScannerPage();
             Title = "HomePage";
             DataSource = new ObservableCollection<AnimalItem>();
-            CmdScan = new DelegateCommand(Scan);
-            SearchCommand = new DelegateCommand<string>(Search);
-            ShowDetail = new DelegateCommand<AnimalItem>(OnShowDetail);
+            InitializeCommand();
         }
 
-        private async void Search(string obj)
+        public override void OnNavigatedTo(INavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            RefreshCommand.Execute(null);
+        }
+
+        private void InitializeCommand()
+        {
+            ScanQRCommand = new DelegateCommand(HandleScanQRCommand);
+            RefreshCommand = new DelegateCommand(HandleRefreshCommand);
+            SearchCommand = new DelegateCommand<string>(HandleSearchCommand);
+            ShowDetailCommand = new DelegateCommand<AnimalItem>(HandleShowDetailCommand);
+        }
+
+        private void HandleRefreshCommand()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                IsBusy = true;
+                DataSource = await LoadHomeListViewData();
+                IsBusy = false;
+            });
+        }
+
+        private async void HandleSearchCommand(string obj)
         {
             DataSource = new ObservableCollection<AnimalItem>((await LoadHomeListViewData()).Where(item => item.TenThuong.ToLower().Contains(obj)));
         }
 
-        //Chuyển sang DetailPage
-        public void OnShowDetail(AnimalItem obj)
+        private void HandleShowDetailCommand(AnimalItem obj)
         {
-            var par = new Prism.Navigation.NavigationParameters();
-            par.Add("sinhvat", obj);
-            NavigationService.NavigateAsync("DetailPage", par);
+            var parameters = new Prism.Navigation.NavigationParameters();
+            parameters.Add("sinhvat", obj);
+            NavigationService.NavigateAsync("DetailPage", parameters);
         }
-        
-        //lấy dữ liệu cho listview
+
         private async Task<ObservableCollection<AnimalItem>> LoadHomeListViewData()
         {
-            var url = Configuration.ID_HOST + "/api/detail";
-            BodyResponseFormatBase<List<Tuple<SinhVat, Hinh>>> Response;
-            Response = await HttpService.GetAsync<List<Tuple<SinhVat, Hinh>>>(url);
-            var result = new ObservableCollection<AnimalItem>(Response.Result.Select(e => new AnimalItem(e.Item1,e.Item2)));
-            return result;
-        }       
-        public async override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-            DataSource = await LoadHomeListViewData();
+            return new ObservableCollection<AnimalItem>(await AnimalService.GetAnimals());
         }
-        private void Scan()
+
+        private void HandleScanQRCommand()
         {
-            scanPage = new ZXingScannerPage();
-            scanPage.OnScanResult += (result) =>
+            _scanPage.OnScanResult += (result) =>
             {
-                scanPage.IsScanning = false;
-                Device.BeginInvokeOnMainThread(() =>
-                {
-                    //  DisplayAlert("Scanned Barcode", result.Text, "OK");
-                    // myCode.Text = result.Text;
-                });
+                _scanPage.IsScanning = false;
+                // Navigate to DetailPage
             };
         }
     }
