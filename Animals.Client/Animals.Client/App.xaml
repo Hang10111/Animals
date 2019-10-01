@@ -2,9 +2,20 @@
 <unity:PrismApplication
     xmlns:unity="http://prismlibrary.com"
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:resources="clr-namespace:Animals.Client.Resources"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="Animals.Client.App">
     <unity:PrismApplication.Resources>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <resources:Color/>
+                <resources:Size/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <Style x:Key="TitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource TitleSize}" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="TextColor" Value="{StaticResource TitleColor}"/>
+        </Style>
     </unity:PrismApplication.Resources>
 </unity:PrismApplication>

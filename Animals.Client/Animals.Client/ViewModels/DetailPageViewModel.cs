@@ -1,4 +1,5 @@
 ﻿using Animals.Client.Models;
+using Animals.Share;
 using Prism.Navigation;
 
 namespace Animals.Client.ViewModels
@@ -19,6 +20,7 @@ namespace Animals.Client.ViewModels
         public string TinhTrangMau { get => _tinhTrangMau; set => SetProperty(ref _tinhTrangMau, value); }
         public string NoiTruMau { get => _noiTruMau; set => SetProperty(ref _noiTruMau, value); }
         public string ImageURL { get => _imageURL; set => SetProperty(ref _imageURL, value); }
+        public System.Collections.ObjectModel.ObservableCollection<Location> Locations { get => _locations; set => SetProperty(ref _locations, value); }
 
         private AnimalItem _animalItem;
         private string _tenKh = string.Empty;
@@ -35,6 +37,7 @@ namespace Animals.Client.ViewModels
         private string _gtSuDung = string.Empty;
         private string _tinhTrangMau = string.Empty;
         private string _noiTruMau = string.Empty;
+        private System.Collections.ObjectModel.ObservableCollection<Location> _locations = new System.Collections.ObjectModel.ObservableCollection<Location>();
 
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
         {
@@ -78,6 +81,7 @@ namespace Animals.Client.ViewModels
             TinhTrangMau = _animalItem.TinhTrangMau;
             NoiTruMau = _animalItem.NoiTruMau;
             ImageURL = _animalItem.ImageURL;
+            Locations = _animalItem.Locations;
         }
     }
 }

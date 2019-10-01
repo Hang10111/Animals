@@ -1,50 +1,48 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:mapsui="clr-namespace:Mapsui.UI.Forms;assembly=Mapsui.UI.Forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Animals.Client.Xamarin"
              x:Class="Animals.Client.Views.DetailPage"
              Title="{Binding Title}">
     <StackLayout>
         <ScrollView>
-            <StackLayout Padding="10"  BackgroundColor="#F5F5F5">
+            <StackLayout  BackgroundColor="{StaticResource BgColor}">
                 <Image Source ="{Binding ImageURL}"   
                        x:Name="img"
-                       HeightRequest  ="300" 
-                       WidthRequest ="300"
-                       Aspect ="AspectFill"
-                       HorizontalOptions="Center"
-                       BackgroundColor="#CAE5E8"></Image>
+                       WidthRequest="310"
+                       HeightRequest  ="250" 
+                       Aspect ="Fill"
+                       HorizontalOptions="Fill"></Image>
                 <StackLayout Padding="10" >
-                    <Label Text="Tên khoa học:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Tên khoa học:"  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenKh}"/>
-                    <Label Text="Tên thường: " HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Tên thường: "  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenThuong}"/>
-                    <Label Text="Tên tiếng anh:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Tên tiếng anh:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenTiengAnh}"/>
-                    <Label Text="Thuộc chi:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold" />
+                    <Label Text="Thuộc chi:" Style="{StaticResource TitleStyle}" />
                     <Label Text="{Binding ThuocChi}"/>
-                    <Label Text="Phân bố:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Phân bố:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding PhanBo}"/>
-                    <Label Text="Đặc điểm hình thái" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Đặc điểm hình thái" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DdHinhThai}"/>
-                    <Label Text="Đặc điểm sinh học" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Đặc điểm sinh học" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DdSinhHoc}"/>
-                    <Label Text="Tập tính sinh sản" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Tập tính sinh sản" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TtSinhSan}"/>
-                    <Label Text="Môi trường sống:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Môi trường sống:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding MtSong}"/>
-                    <Label Text="Độ nguy hiểm:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Độ nguy hiểm:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DoNguyHiem}"/>
-                    <Label Text="Giá trị sử dụng:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Giá trị sử dụng:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding GtSuDung}"/>
-                    <Label Text="Tình trạng mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Tình trạng mẫu:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TinhTrangMau}"/>
-                    <Label Text="Nội trữ mẫu:" HorizontalOptions="Center" FontSize="18" TextColor ="#f07355" FontAttributes="Bold"/>
+                    <Label Text="Nội trữ mẫu:" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding NoiTruMau}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
-        <mapsui:MapView x:Name="mapView"
-                        HeightRequest="500"/>
+        <forms:CustomMapView Locations="{Binding Locations}" HeightRequest="500"/>
     </StackLayout>
 </ContentPage>

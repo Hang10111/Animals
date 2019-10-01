@@ -1,5 +1,4 @@
 ﻿using System.Windows.Input;
-using ZXing.Net.Mobile.Forms;
 using System.Collections.ObjectModel;
 using Prism.Navigation;
 using Prism.Commands;
@@ -15,18 +14,15 @@ namespace Animals.Client.ViewModels
     {
         public ObservableCollection<AnimalItem> DataSource { get => _dataSource; set => SetProperty(ref _dataSource, value, () => { RaisePropertyChanged(nameof(IsVisibleRefresh)); }); }
         public bool IsVisibleRefresh => DataSource.Count <= 0;
-
         public ICommand ScanQRCommand { get; private set; }
         public ICommand SearchCommand { get; private set; }
         public ICommand ShowDetailCommand { get; private set; }
         public ICommand RefreshCommand { get; private set; }
-
-        private readonly ZXingScannerPage _scanPage;
+        
         private ObservableCollection<AnimalItem> _dataSource;
 
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
-            _scanPage = new ZXingScannerPage();
             Title = "HomePage";
             DataSource = new ObservableCollection<AnimalItem>();
             InitializeCommand();
@@ -72,14 +68,10 @@ namespace Animals.Client.ViewModels
         {
             return new ObservableCollection<AnimalItem>(await AnimalService.GetAnimals());
         }
-
+        
         private void HandleScanQRCommand()
         {
-            _scanPage.OnScanResult += (result) =>
-            {
-                _scanPage.IsScanning = false;
-                // Navigate to DetailPage
-            };
+            NavigationService.NavigateAsync("ScannerPage");
         }
     }
 }

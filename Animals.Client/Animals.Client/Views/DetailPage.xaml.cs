@@ -3,6 +3,7 @@ using Xamarin.Forms.Xaml;
 using Mapsui.Layers;
 using BruTile.Predefined;
 using Mapsui.Widgets.ScaleBar;
+using Mapsui.UI.Forms;
 
 namespace Animals.Client.Views
 {
@@ -12,8 +13,6 @@ namespace Animals.Client.Views
         public DetailPage()
         {
             InitializeComponent();
-            mapView.Map.Layers.Add(new TileLayer(KnownTileSources.Create(KnownTileSource.OpenStreetMap)) { Name = "OpenStreetMap" });
-            mapView.Map.Widgets.Add(new ScaleBarWidget(mapView.Map));
         }
     }
 }

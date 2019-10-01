@@ -1,4 +1,5 @@
 ﻿using Animals.Share;
+using System.Collections.ObjectModel;
 
 namespace Animals.Client.Models
 {
@@ -21,15 +22,17 @@ namespace Animals.Client.Models
         public short LaDv => _sinhVat.LaDv != null ? _sinhVat.LaDv.Value : (short)0;
         public string TtBaoTon => _sinhVat.TtBaoTon;
         public string ImageURL => _hinh.DuongDan;
+        public System.Collections.ObjectModel.ObservableCollection<Location> Locations => _locations;
+
+        private readonly System.Collections.ObjectModel.ObservableCollection<Location> _locations;
         private readonly SinhVat _sinhVat;
         private readonly Hinh _hinh;
         public AnimalItem() { }
-        public AnimalItem(SinhVat sinhVat, Hinh Hinh)
+        public AnimalItem(SinhVat sinhVat, Hinh Hinh, ObservableCollection<Location> location)
         {
             _sinhVat = sinhVat;
             _hinh = Hinh;
-            //FIXME: hardcode ImageURL
-        //    Hinh.DuongDan = "http://192.168.1.200:10000/hinh-tin-tuc/test.jpg";
+            _locations = location;
         }
     }
 }

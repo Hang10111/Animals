@@ -13,11 +13,10 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Padding="10" Spacing="8" >
-            <Button Text="Scan QRCode" 
-                    TextColor="#fff"
-                    BackgroundColor="Teal"
-                    Command="{Binding ScanQRCommand}"/>
+        <StackLayout>
+            <Button Text="Scan QRCode"
+                    Command="{Binding ScanQRCommand}"
+                    HeightRequest="50"/>
             <SearchBar Placeholder="Search items.." Text="{Binding SearchText}">
                 <SearchBar.Behaviors>
                     <b1:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}" EventArgsConverter="{StaticResource TextChangedConverter}"/>
@@ -32,7 +31,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell ImageSource ="{Binding ImageURL}"
-                                   Text="{Binding TenKh}" TextColor="#00405d" Height="15"
+                                   Text="{Binding TenKh}" TextColor="#00405d" Height="18"
                                    Command="{Binding BindingContext.ShowDetailCommand, Source={x:Reference Home}}"
                                    CommandParameter="{Binding .}"
                                    Detail="{Binding TenThuong}" />
