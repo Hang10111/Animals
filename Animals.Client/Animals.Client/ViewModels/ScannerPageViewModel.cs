@@ -1,99 +1,84 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
-using Prism.Services;
 
 namespace Animals.Client.ViewModels
 {
     public class ScannerPageViewModel : ViewModelBase
     {
-        public DelegateCommand OnBarcodeScannedCommand { get; set; }
-        private readonly INavigationService _navigationService;
-        private readonly IPageDialogService _pageDialogue;
-        private readonly IDeviceService _deviceService;
+        public ICommand OnBarcodeScannedCommand { get; private set; }
+        public ICommand TurnOnFlashCommand { get; private set; }
 
-        bool _isProcessing = false;
-
-        private bool _isAnalyzing = true;
+        public bool IsTurnOnFlash
+        {
+            get => _isTurnOnFlash;
+            set => SetProperty(ref _isTurnOnFlash, value);
+        }
         public bool IsAnalyzing
         {
-            get
-            {
-                return _isAnalyzing;
-            }
-            set
-            {
-                if (SetProperty(ref _isAnalyzing, value))
-                {
-                    //Do something
-                }
-            }
+            get => _isAnalyzing;
+            set => SetProperty(ref _isAnalyzing, value);
         }
-
-        private bool _isScanning;
         public bool IsScanning
         {
-            get
-            {
-                return _isScanning;
-            }
-            set
-            {
-                if (SetProperty(ref _isAnalyzing, value))
-                {
-                    //Do something
-                }
-            }
+            get => _isScanning;
+            set => SetProperty(ref _isScanning, value);
         }
-
-        private ZXing.Result _result;
         public ZXing.Result Result
         {
-            get
-            {
-                return _result;
-            }
-            set
-            {
-                if (SetProperty(ref _result, value))
-                {
-                    //Do something
-                }
-            }
+            get => _result;
+            set => SetProperty(ref _result, value);
         }
-        public ScannerPageViewModel(INavigationService navigationService,
-                                    IPageDialogService pageDialogService,
-                                    IDeviceService deviceService) : base(navigationService)
+
+        private bool _isAnalyzing = true;
+        private bool _isScanning = true;
+        private ZXing.Result _result;
+        private bool _isTurnOnFlash;
+
+        public ScannerPageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "Scan";
-
-            _navigationService = navigationService;
-            _pageDialogue = pageDialogService;
-            _deviceService = deviceService;
-
-            OnBarcodeScannedCommand = new DelegateCommand(OnBarcodeScanned);
-
-            _isScanning = true;
+            TurnOnFlashCommand = new DelegateCommand(HandleTurnOnFlashCommand);
+            OnBarcodeScannedCommand = new DelegateCommand(OnBarcodeScanned, canExecute);
         }
 
-        private void OnBarcodeScanned()
+        public override void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (!_isProcessing)
+            base.OnNavigatedTo(parameters);
+            IsBusy = false;
+        }
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+            if (propertyName == nameof(IsBusy))
             {
-                _deviceService.BeginInvokeOnMainThread(async () =>
-                {
-                    _isProcessing = true;
-                    _isAnalyzing = false;
-                    RaisePropertyChanged("IsAnalyzing");
-                    string message = Result.Text;
-                    Debug.WriteLine(message);
-                    await _pageDialogue.DisplayAlertAsync("Scan!", message, "Close");
-                    _isProcessing = false;
-                    _isAnalyzing = true;
-                    RaisePropertyChanged("IsAnalyzing");
-                });
+                ((DelegateCommand)OnBarcodeScannedCommand).RaiseCanExecuteChanged();
             }
+        }
+
+        private void HandleTurnOnFlashCommand()
+        {
+            IsTurnOnFlash = !IsTurnOnFlash;
+        }
+
+        private bool canExecute()
+        {
+            return IsNotBusy;
+        }
+
+        private async void OnBarcodeScanned()
+        {
+            IsBusy = true;
+            IsAnalyzing = false;
+            var animalItems = await Services.AnimalService.GetAnimals();
+            var animal = animalItems.FirstOrDefault(item => item.IdSinhVat.ToString() == Result.Text);
+            var parameters = new NavigationParameters();
+            parameters.Add("sinhvat", animal);
+            await NavigationService.NavigateAsync("Detail", parameters);
+            IsBusy = false;
         }
     }
 }

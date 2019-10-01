@@ -38,6 +38,7 @@ namespace Animals.Client.Xamarin
                 {
                     Pins.Add(new Pin(this)
                     {
+                        Label = (Locations.IndexOf(item) + 1).ToString(),
                         Position = new Position(item.Latitude, item.Longitude),
                         Type = PinType.Pin,
                     });

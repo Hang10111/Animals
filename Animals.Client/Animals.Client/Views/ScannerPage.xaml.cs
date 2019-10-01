@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Animals.Client.Views
@@ -15,13 +9,6 @@ namespace Animals.Client.Views
         public ScannerPage()
         {
             InitializeComponent();
-            scanView.Options.DelayBetweenAnalyzingFrames = 5;
-            scanView.Options.DelayBetweenContinuousScans = 5;
-        }
-
-        private void Handle_FlashButtonClicked(object sender, EventArgs e)
-        {
-            scanView.IsTorchOn = !scanView.IsTorchOn;
         }
     }
 }

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals.Client.Android", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals.Client", "Animals.Client\Animals.Client\Animals.Client.csproj", "{D6D1D432-8523-4F86-8560-2696CF8A44C1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Animals.Client.Resource", "Animals.Client.Resource\Animals.Client.Resource.csproj", "{368E656C-1FB6-4B68-8D82-140ED36AC0FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

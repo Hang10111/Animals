@@ -14,6 +14,7 @@ namespace Animals.Client.ViewModels
     {
         public ObservableCollection<AnimalItem> DataSource { get => _dataSource; set => SetProperty(ref _dataSource, value, () => { RaisePropertyChanged(nameof(IsVisibleRefresh)); }); }
         public bool IsVisibleRefresh => DataSource.Count <= 0;
+
         public ICommand ScanQRCommand { get; private set; }
         public ICommand SearchCommand { get; private set; }
         public ICommand ShowDetailCommand { get; private set; }
@@ -59,9 +60,9 @@ namespace Animals.Client.ViewModels
 
         private void HandleShowDetailCommand(AnimalItem obj)
         {
-            var parameters = new Prism.Navigation.NavigationParameters();
+            var parameters = new NavigationParameters();
             parameters.Add("sinhvat", obj);
-            NavigationService.NavigateAsync("DetailPage", parameters);
+            NavigationService.NavigateAsync("Detail", parameters);
         }
 
         private async Task<ObservableCollection<AnimalItem>> LoadHomeListViewData()
@@ -71,7 +72,7 @@ namespace Animals.Client.ViewModels
         
         private void HandleScanQRCommand()
         {
-            NavigationService.NavigateAsync("ScannerPage");
+            NavigationService.NavigateAsync("Scanner");
         }
     }
 }

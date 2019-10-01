@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Animals.Client.Resource\Animals.Client.Resource.csproj" />
     <ProjectReference Include="..\..\Animals.Share\Animals.Share.csproj" />
   </ItemGroup>
 
