@@ -4,59 +4,81 @@ using Prism.Navigation;
 using Prism.Commands;
 using Animals.Client.Services;
 using System.Linq;
-using System.Threading.Tasks;
 using Animals.Client.Models;
-using Xamarin.Forms;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Animals.Client.Customs;
 
 namespace Animals.Client.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-        public ObservableCollection<AnimalItem> DataSource { get => _dataSource; set => SetProperty(ref _dataSource, value, () => { RaisePropertyChanged(nameof(IsVisibleRefresh)); }); }
-        public bool IsVisibleRefresh => DataSource.Count <= 0;
+        public bool IsVisibleRefresh => DataSource.Count <= 0 && string.IsNullOrEmpty(SearchText);
+        public string SearchText
+        {
+            get => _searchText;
+            set => SetProperty(ref _searchText, value, () => { RaisePropertyChanged(nameof(DataSource)); RaisePropertyChanged(nameof(IsVisibleRefresh)); });
+        }
+        public CustomObservableCollection<IGrouping<string, AnimalItem>> DataSource
+        {
+            get
+            {
+                CustomObservableCollection<IGrouping<string, AnimalItem>> result = new CustomObservableCollection<IGrouping<string, AnimalItem>>();
+                var animalItems = AnimalItemModels?.Where(item =>
+                string.IsNullOrEmpty(SearchText?.Trim())
+                || item.TenKh.ToLower().Contains(SearchText.ToLower())
+                || item.TenThuong.ToLower().Contains(SearchText))
+                .OrderBy(item => item.ShortName)
+                .ThenBy(item => item.TenThuong)
+                .GroupBy(item => item.ShortName);
+                result.Replace(animalItems);
+                return result;
+            }
+        }
 
         public ICommand ScanQRCommand { get; private set; }
-        public ICommand SearchCommand { get; private set; }
         public ICommand ShowDetailCommand { get; private set; }
         public ICommand RefreshCommand { get; private set; }
         
-        private ObservableCollection<AnimalItem> _dataSource;
+        protected IEnumerable<AnimalItem> AnimalItemModels
+        {
+            set => SetProperty(ref _animalItemModels, value, () => { RaisePropertyChanged(nameof(DataSource)); RaisePropertyChanged(nameof(IsVisibleRefresh)); });
+            get => _animalItemModels;
+        }
+
+        private string _searchText;
+        private IEnumerable<AnimalItem> _animalItemModels;
 
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             Title = "HomePage";
-            DataSource = new ObservableCollection<AnimalItem>();
             InitializeCommand();
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             base.OnNavigatedTo(parameters);
-            RefreshCommand.Execute(null);
+            if (AnimalItemModels == null)
+            {
+                RefreshCommand.Execute(null);
+            }
+            IsBusy = false;
         }
 
         private void InitializeCommand()
         {
             ScanQRCommand = new DelegateCommand(HandleScanQRCommand);
             RefreshCommand = new DelegateCommand(HandleRefreshCommand);
-            SearchCommand = new DelegateCommand<string>(HandleSearchCommand);
             ShowDetailCommand = new DelegateCommand<AnimalItem>(HandleShowDetailCommand);
         }
 
-        private void HandleRefreshCommand()
+        private async void HandleRefreshCommand()
         {
-            Device.BeginInvokeOnMainThread(async () =>
-            {
-                IsBusy = true;
-                DataSource = await LoadHomeListViewData();
-                IsBusy = false;
-            });
+            IsBusy = true;
+            AnimalItemModels = await LoadHomeListViewData();
+            IsBusy = false;
         }
 
-        private async void HandleSearchCommand(string obj)
-        {
-            DataSource = new ObservableCollection<AnimalItem>((await LoadHomeListViewData()).Where(item => item.TenThuong.ToLower().Contains(obj)));
-        }
 
         private void HandleShowDetailCommand(AnimalItem obj)
         {
@@ -65,9 +87,9 @@ namespace Animals.Client.ViewModels
             NavigationService.NavigateAsync("Detail", parameters);
         }
 
-        private async Task<ObservableCollection<AnimalItem>> LoadHomeListViewData()
+        private async Task<IEnumerable<AnimalItem>> LoadHomeListViewData()
         {
-            return new ObservableCollection<AnimalItem>(await AnimalService.GetAnimals());
+            return await AnimalService.GetAnimals();
         }
         
         private void HandleScanQRCommand()

@@ -9,7 +9,7 @@ namespace Animals.Client.Models
         public string TenKh => _sinhVat.TenKh;
         public string TenThuong => _sinhVat.TenThuong;
         public string TenTiengAnh => _sinhVat.TenTiengAnh;
-        public int ThuocChi => _sinhVat.ThuocChi !=null ? _sinhVat.ThuocChi.Value :0;
+        public int ThuocChi => _sinhVat.ThuocChi != null ? _sinhVat.ThuocChi.Value : 0;
         public string PhanBo => _sinhVat.PhanBo;
         public string DdHinhThai => _sinhVat.DdHinhThai;
         public string DdSinhHoc => _sinhVat.DdSinhHoc;
@@ -22,9 +22,11 @@ namespace Animals.Client.Models
         public short LaDv => _sinhVat.LaDv != null ? _sinhVat.LaDv.Value : (short)0;
         public string TtBaoTon => _sinhVat.TtBaoTon;
         public string ImageURL => _hinh.DuongDan;
-        public System.Collections.ObjectModel.ObservableCollection<Location> Locations => _locations;
+        public ObservableCollection<Location> Locations => _locations;
+        public string ShortName => _shortName;
 
-        private readonly System.Collections.ObjectModel.ObservableCollection<Location> _locations;
+        private readonly ObservableCollection<Location> _locations;
+        private readonly string _shortName;
         private readonly SinhVat _sinhVat;
         private readonly Hinh _hinh;
         public AnimalItem() { }
@@ -33,6 +35,7 @@ namespace Animals.Client.Models
             _sinhVat = sinhVat;
             _hinh = Hinh;
             _locations = location;
+            _shortName = TenKh[0].ToString().ToUpper(); ;
         }
     }
 }

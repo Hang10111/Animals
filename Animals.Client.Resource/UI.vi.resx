@@ -64,4 +64,40 @@
   <data name="Detail_Normal_Name" xml:space="preserve">
     <value>Tên thường: </value>
   </data>
+  <data name="Detail_English_Name" xml:space="preserve">
+    <value>Tên Tiếng Anh: </value>
+  </data>
+  <data name="Detail_Genus" xml:space="preserve">
+    <value>Thuộc Chi: </value>
+  </data>
+  <data name="Detail_Distribution" xml:space="preserve">
+    <value>Phân Bố: </value>
+  </data>
+  <data name="Detail_Morphological_Characteristics" xml:space="preserve">
+    <value>Đặc Điểm Hình Thái: </value>
+  </data>
+  <data name="Detail_Biological_Characteristics" xml:space="preserve">
+    <value>Đặc Điểm Sinh Học: </value>
+  </data>
+  <data name="Detail_Reproductive_Behavior" xml:space="preserve">
+    <value>Tập Tính Sinh Sản: </value>
+  </data>
+  <data name="Detail_Living_Environment" xml:space="preserve">
+    <value>Môi Trường Sống: </value>
+  </data>
+  <data name="Detail_Danger_Level" xml:space="preserve">
+    <value>Độ Nguy Hiểm: </value>
+  </data>
+  <data name="Detail_Worth_Using" xml:space="preserve">
+    <value>Gía Trị Sử Dụng: </value>
+  </data>
+  <data name="Detail_Color_Condition" xml:space="preserve">
+    <value>Tình Trạng Màu: </value>
+  </data>
+  <data name="Detail_Color_Storage" xml:space="preserve">
+    <value>Nội Trữ Màu: </value>
+  </data>
+  <data name="Detail_Convervation_Status" xml:space="preserve">
+    <value>Tình Trạng Bảo Tồn: </value>
+  </data>
 </root>

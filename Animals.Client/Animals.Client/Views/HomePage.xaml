@@ -12,19 +12,17 @@
             <converters:TextChangedConverter x:Key="TextChangedConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Scan QRCode"
+                     Command="{Binding ScanQRCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Scan QRCode"
-                    Command="{Binding ScanQRCommand}"
-                    HeightRequest="50"/>
-            <SearchBar Placeholder="Search items.." Text="{Binding SearchText}">
-                <SearchBar.Behaviors>
-                    <b1:EventToCommandBehavior EventName="TextChanged" Command="{Binding SearchCommand}" EventArgsConverter="{StaticResource TextChangedConverter}"/>
-                </SearchBar.Behaviors>
-            </SearchBar>
+            <SearchBar Placeholder="Search items.." Text="{Binding SearchText}"/>
             <ListView ItemsSource="{Binding DataSource}"
-                      SelectedItem="{Binding Selected}"
                       SelectionMode="None"
+                      IsGroupingEnabled="True"
+                      GroupDisplayBinding="{Binding Key}"
                       IsPullToRefreshEnabled="True"
                       RefreshCommand="{Binding RefreshCommand}"
                       IsRefreshing="{Binding IsBusy}">

@@ -38,15 +38,87 @@
             }
         }
         
+        public static string Detail_Biological_Characteristics {
+            get {
+                return ResourceManager.GetString("Detail_Biological_Characteristics", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Color_Condition {
+            get {
+                return ResourceManager.GetString("Detail_Color_Condition", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Color_Storage {
+            get {
+                return ResourceManager.GetString("Detail_Color_Storage", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Convervation_Status {
+            get {
+                return ResourceManager.GetString("Detail_Convervation_Status", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Danger_Level {
+            get {
+                return ResourceManager.GetString("Detail_Danger_Level", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Distribution {
+            get {
+                return ResourceManager.GetString("Detail_Distribution", resourceCulture);
+            }
+        }
+        
+        public static string Detail_English_Name {
+            get {
+                return ResourceManager.GetString("Detail_English_Name", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Genus {
+            get {
+                return ResourceManager.GetString("Detail_Genus", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Living_Environment {
+            get {
+                return ResourceManager.GetString("Detail_Living_Environment", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Morphological_Characteristics {
+            get {
+                return ResourceManager.GetString("Detail_Morphological_Characteristics", resourceCulture);
+            }
+        }
+        
         public static string Detail_Normal_Name {
             get {
                 return ResourceManager.GetString("Detail_Normal_Name", resourceCulture);
             }
         }
         
+        public static string Detail_Reproductive_Behavior {
+            get {
+                return ResourceManager.GetString("Detail_Reproductive_Behavior", resourceCulture);
+            }
+        }
+        
         public static string Detail_Science_Name {
             get {
                 return ResourceManager.GetString("Detail_Science_Name", resourceCulture);
+            }
+        }
+
+        public static string Detail_Worth_Using {
+            get {
+                return ResourceManager.GetString("Detail_Worth_Using", resourceCulture);
             }
         }
     }

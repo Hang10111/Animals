@@ -17,29 +17,29 @@
                 <StackLayout Padding="10" >
                     <Label Text="{Static stringResource:UI.Detail_Science_Name}"  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenKh}"/>
-                    <Label Text="Tên thường: "  Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Normal_Name}"  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenThuong}"/>
-                    <Label Text="Tên tiếng anh:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_English_Name}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenTiengAnh}"/>
-                    <Label Text="Thuộc chi:" Style="{StaticResource TitleStyle}" />
+                    <Label Text="{Static stringResource:UI.Detail_Genus}" Style="{StaticResource TitleStyle}" />
                     <Label Text="{Binding ThuocChi}"/>
-                    <Label Text="Phân bố:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Distribution}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding PhanBo}"/>
-                    <Label Text="Đặc điểm hình thái" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Morphological_Characteristics}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DdHinhThai}"/>
-                    <Label Text="Đặc điểm sinh học" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Biological_Characteristics}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DdSinhHoc}"/>
-                    <Label Text="Tập tính sinh sản" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Reproductive_Behavior}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TtSinhSan}"/>
-                    <Label Text="Môi trường sống:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Living_Environment}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding MtSong}"/>
-                    <Label Text="Độ nguy hiểm:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Danger_Level}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding DoNguyHiem}"/>
-                    <Label Text="Giá trị sử dụng:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Worth_Using}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding GtSuDung}"/>
-                    <Label Text="Tình trạng mẫu:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Color_Condition}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TinhTrangMau}"/>
-                    <Label Text="Nội trữ mẫu:" Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Color_Storage}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding NoiTruMau}"/>
                 </StackLayout>
             </StackLayout>
