@@ -29,13 +29,25 @@ namespace Animals.Client.Models
         private readonly string _shortName;
         private readonly SinhVat _sinhVat;
         private readonly Hinh _hinh;
+
         public AnimalItem() { }
+
         public AnimalItem(SinhVat sinhVat, Hinh Hinh, ObservableCollection<Location> location)
         {
             _sinhVat = sinhVat;
             _hinh = Hinh;
             _locations = location;
             _shortName = TenKh[0].ToString().ToUpper(); ;
+        }
+
+        public bool IsContainsText(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return true;
+            }
+            text = text.Trim();
+            return TenKh.ToLower().Contains(text.ToLower()) || TenThuong.Contains(text.ToLower());
         }
     }
 }

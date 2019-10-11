@@ -25,9 +25,7 @@ namespace Animals.Client.ViewModels
             {
                 CustomObservableCollection<IGrouping<string, AnimalItem>> result = new CustomObservableCollection<IGrouping<string, AnimalItem>>();
                 var animalItems = AnimalItemModels?.Where(item =>
-                string.IsNullOrEmpty(SearchText?.Trim())
-                || item.TenKh.ToLower().Contains(SearchText.ToLower())
-                || item.TenThuong.ToLower().Contains(SearchText))
+                item.IsContainsText(SearchText))
                 .OrderBy(item => item.ShortName)
                 .ThenBy(item => item.TenThuong)
                 .GroupBy(item => item.ShortName);
