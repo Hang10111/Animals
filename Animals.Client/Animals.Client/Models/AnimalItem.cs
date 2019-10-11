@@ -47,7 +47,7 @@ namespace Animals.Client.Models
                 return true;
             }
             text = text.Trim();
-            return TenKh.ToLower().Contains(text.ToLower()) || TenThuong.Contains(text.ToLower());
+            return TenKh.ToLower().Contains(text.ToLower()) || TenTiengAnh.Contains(text.ToLower());
         }
     }
 }

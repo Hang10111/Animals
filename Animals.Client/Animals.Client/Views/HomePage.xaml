@@ -32,7 +32,7 @@
                                    Text="{Binding TenKh}" TextColor="#00405d" Height="18"
                                    Command="{Binding BindingContext.ShowDetailCommand, Source={x:Reference Home}}"
                                    CommandParameter="{Binding .}"
-                                   Detail="{Binding TenThuong}" />
+                                   Detail="{Binding TenTiengAnh}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>

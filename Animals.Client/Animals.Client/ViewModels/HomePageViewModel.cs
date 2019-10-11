@@ -1,13 +1,12 @@
-﻿using System.Windows.Input;
-using System.Collections.ObjectModel;
-using Prism.Navigation;
-using Prism.Commands;
-using Animals.Client.Services;
-using System.Linq;
+﻿using Animals.Client.Customs;
 using Animals.Client.Models;
+using Animals.Client.Services;
+using Prism.Commands;
+using Prism.Navigation;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Animals.Client.Customs;
+using System.Windows.Input;
 
 namespace Animals.Client.ViewModels
 {
@@ -27,7 +26,7 @@ namespace Animals.Client.ViewModels
                 var animalItems = AnimalItemModels?.Where(item =>
                 item.IsContainsText(SearchText))
                 .OrderBy(item => item.ShortName)
-                .ThenBy(item => item.TenThuong)
+                .ThenBy(item => item.TenTiengAnh)
                 .GroupBy(item => item.ShortName);
                 result.Replace(animalItems);
                 return result;
