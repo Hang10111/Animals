@@ -8,7 +8,6 @@ namespace Animals.Share
         public int Idhinh { get; set; }
         public int? Idtin { get; set; }
         public string DuongDan { get; set; }
-
         public TinTuc IdtinNavigation { get; set; }
     }
 }

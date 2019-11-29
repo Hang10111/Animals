@@ -32,10 +32,10 @@ namespace Animals.Client.Models
 
         public AnimalItem() { }
 
-        public AnimalItem(SinhVat sinhVat, Hinh Hinh, ObservableCollection<Location> location)
+        public AnimalItem(SinhVat sinhVat, Hinh hinh, ObservableCollection<Location> location)
         {
             _sinhVat = sinhVat;
-            _hinh = Hinh;
+            _hinh = hinh;
             _locations = location;
             _shortName = TenKh[0].ToString().ToUpper(); ;
         }
