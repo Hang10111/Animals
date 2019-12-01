@@ -1,43 +1,46 @@
 ﻿using Animals.Share;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Animals.Client.Models
 {
     public class AnimalItem
     {
-        public int IdSinhVat => _sinhVat.IdSinhVat;
-        public string TenKh => _sinhVat.TenKh;
-        public string TenThuong => _sinhVat.TenThuong;
-        public string TenTiengAnh => _sinhVat.TenTiengAnh;
-        public int ThuocChi => _sinhVat.ThuocChi != null ? _sinhVat.ThuocChi.Value : 0;
-        public string PhanBo => _sinhVat.PhanBo;
-        public string DdHinhThai => _sinhVat.DdHinhThai;
-        public string DdSinhHoc => _sinhVat.DdSinhHoc;
-        public string TtSinhSan => _sinhVat.TtSinhSan;
-        public string MtSong => _sinhVat.MtSong;
-        public string DoNguyHiem => _sinhVat.DoNguyHiem;
-        public string GtSuDung => _sinhVat.GtSuDung;
-        public string TinhTrangMau => _sinhVat.TinhTrangMau;
-        public string NoiTruMau => _sinhVat.NoiTruMau;
-        public short LaDv => _sinhVat.LaDv != null ? _sinhVat.LaDv.Value : (short)0;
-        public string TtBaoTon => _sinhVat.TtBaoTon;
-        public string ImageURL => _hinh.DuongDan;
+        public int IdSinhVat => _sinhVat.SpeciesId;
+        public string TenKh => _sinhVat.ScientificName;
+        public string TenThuong => _sinhVat.VietName;
+        public string TenTiengAnh => _sinhVat.EngName;
+        public int ThuocChi => _sinhVat.Genus != null ? _sinhVat.Genus.Value : 0;
+        public string PhanBo => _sinhVat.Distribution;
+        public string DdHinhThai => _sinhVat.MorphoCharcs;
+        public string DdSinhHoc => _sinhVat.BioCharcs;
+        public string TtSinhSan => _sinhVat.Reproduction;
+        public string MtSong => _sinhVat.Habitats;
+        public string DoNguyHiem => _sinhVat.Danger;
+        public string GtSuDung => _sinhVat.UseValue;
+        public string TinhTrangMau => _sinhVat.StatusId;
+        public string NoiTruMau => _sinhVat.SampleId;
+        public short LaDv => _sinhVat.IsAnimal != null ? _sinhVat.IsAnimal.Value : (short)0;
+        public string TtBaoTon => _sinhVat.Status.StatusName;
+        public ObservableCollection<Images> ImageURL => _hinh;
         public ObservableCollection<Location> Locations => _locations;
         public string ShortName => _shortName;
+        public string AvatarUrl { get; set; }
 
         private readonly ObservableCollection<Location> _locations;
         private readonly string _shortName;
-        private readonly SinhVat _sinhVat;
-        private readonly Hinh _hinh;
+        private readonly Species _sinhVat;
+        private readonly ObservableCollection<Images> _hinh;
 
         public AnimalItem() { }
 
-        public AnimalItem(SinhVat sinhVat, Hinh hinh, ObservableCollection<Location> location)
+        public AnimalItem(Species sinhVat, ObservableCollection<Images> hinhs, ObservableCollection<Location> location)
         {
             _sinhVat = sinhVat;
-            _hinh = hinh;
+            _hinh = hinhs;
             _locations = location;
-            _shortName = TenKh[0].ToString().ToUpper(); ;
+            _shortName = TenKh[0].ToString().ToUpper();
+            AvatarUrl = _hinh.FirstOrDefault()?.ImgPath;
         }
 
         public bool IsContainsText(string text)
@@ -47,7 +50,7 @@ namespace Animals.Client.Models
                 return true;
             }
             text = text.Trim();
-            return TenKh.ToLower().Contains(text.ToLower()) || TenTiengAnh.Contains(text.ToLower());
+            return TenKh.ToLower().Contains(text.ToLower()) || TenTiengAnh.Contains(text.ToLower()) || TenThuong.Contains(text.ToLower());
         }
     }
 }

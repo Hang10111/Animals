@@ -17,5 +17,11 @@
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="TextColor" Value="{StaticResource TitleColor}"/>
         </Style>
+        <Style x:Key="BigTitleStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{StaticResource BigTitleSize}" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="{StaticResource BigTitleColor}"/>
+        </Style>
     </unity:PrismApplication.Resources>
 </unity:PrismApplication>

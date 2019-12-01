@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Animals.Server.Extensions;
+using Animals.Server.Models;
 using Animals.Share;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -18,18 +19,19 @@ namespace Animals.Server.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var sinhVat = Services.DataBaseService.DataBase.SinhVat.ToList();
-            List<Tuple<SinhVat, Hinh, ObservableCollection<Location>>> Result = new List<Tuple<SinhVat, Hinh, ObservableCollection<Location>>>();
+            var sinhVat = Services.DataBaseService.DataBase.Species.ToList();
+            List<Tuple<Species, ObservableCollection<Images>, ObservableCollection<Location>>> Result = new List<Tuple<Species, ObservableCollection<Images>, ObservableCollection<Location>>>();
             foreach (var item in sinhVat)
             {
-                var hinh = Services.DataBaseService.DataBase.Hinh.FirstOrDefault(e => e.Idtin == item.IdSinhVat);
-                var location = Services.DataBaseService.DataBase.VungDiaLi.Where(locationitem => locationitem.IdSinhVat == item.IdSinhVat);
-                Result.Add(new Tuple<SinhVat, Hinh, ObservableCollection<Location>>(
+                var hinhs = Services.DataBaseService.DataBase.Images.Where(e => e.NewsId == item.SpeciesId);
+                Services.DataBaseService.DataBase.ConsvStatus.FirstOrDefault(e=>e.StatusId == item.StatusId);
+                var location = Services.DataBaseService.DataBase.Coordinates.Where(locationitem => locationitem.SpeciesId == item.SpeciesId);
+                Result.Add(new Tuple<Species, ObservableCollection<Images>, ObservableCollection<Location>>(
                     item,
-                    hinh,
+                    new ObservableCollection<Images>(hinhs),
                     new ObservableCollection<Location>(location.Select(locationitem =>
-                    new Location(locationitem.ToaDo.Value.XCoordinate ?? 0,
-                    locationitem.ToaDo.Value.YCoordinate ?? 0)))));
+                    new Location(locationitem.Coord.Value.XCoordinate ?? 0,
+                    locationitem.Coord.Value.YCoordinate ?? 0)))));
             }
             return this.OKResult(Result);
         }

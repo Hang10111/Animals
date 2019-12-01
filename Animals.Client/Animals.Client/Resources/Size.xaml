@@ -3,4 +3,5 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Animals.Client.Resources.Size">
     <x:Double x:Key="TitleSize">16</x:Double>
+    <x:Double x:Key="BigTitleSize">18</x:Double>
 </ResourceDictionary>

@@ -17,16 +17,15 @@ namespace Animals.Client.ViewModels
         public string MtSong { get => _mtSong; set => SetProperty(ref _mtSong, value); }
         public string DoNguyHiem { get => _doNguyHiem; set => SetProperty(ref _doNguyHiem, value); }
         public string GtSuDung { get => _gtSuDung; set => SetProperty(ref _gtSuDung, value); }
-        public string TinhTrangMau { get => _tinhTrangMau; set => SetProperty(ref _tinhTrangMau, value); }
-        public string NoiTruMau { get => _noiTruMau; set => SetProperty(ref _noiTruMau, value); }
-        public string ImageURL { get => _imageURL; set => SetProperty(ref _imageURL, value); }
+        public string TTBaoTon { get => _ttBaoTon; set => SetProperty(ref _ttBaoTon, value); }
+        public System.Collections.ObjectModel.ObservableCollection<Images> ImageURL { get => _imageURL; set => SetProperty(ref _imageURL, value); }
         public System.Collections.ObjectModel.ObservableCollection<Location> Locations { get => _locations; set => SetProperty(ref _locations, value); }
 
         private AnimalItem _animalItem;
         private string _tenKh = string.Empty;
         private string _tenThuong = string.Empty;
         private string _tenTiengAnh = string.Empty;
-        private string _imageURL = string.Empty;
+        private System.Collections.ObjectModel.ObservableCollection<Images> _imageURL = new System.Collections.ObjectModel.ObservableCollection<Images>();
         private int _thuocChi;
         private string _phanBo = string.Empty;
         private string _ddHinhThai = string.Empty;
@@ -35,8 +34,7 @@ namespace Animals.Client.ViewModels
         private string _mtSong = string.Empty;
         private string _doNguyHiem = string.Empty;
         private string _gtSuDung = string.Empty;
-        private string _tinhTrangMau = string.Empty;
-        private string _noiTruMau = string.Empty;
+        private string _ttBaoTon = string.Empty;
         private System.Collections.ObjectModel.ObservableCollection<Location> _locations = new System.Collections.ObjectModel.ObservableCollection<Location>();
 
         public DetailPageViewModel(INavigationService navigationService) : base(navigationService)
@@ -78,8 +76,7 @@ namespace Animals.Client.ViewModels
             MtSong = _animalItem.MtSong;
             DoNguyHiem = _animalItem.DoNguyHiem;
             GtSuDung = _animalItem.GtSuDung;
-            TinhTrangMau = _animalItem.TinhTrangMau;
-            NoiTruMau = _animalItem.NoiTruMau;
+            TTBaoTon = _animalItem.TtBaoTon;
             ImageURL = _animalItem.ImageURL;
             Locations = _animalItem.Locations;
         }

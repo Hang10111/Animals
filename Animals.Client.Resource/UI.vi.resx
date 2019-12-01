@@ -68,7 +68,7 @@
     <value>Tên Tiếng Anh: </value>
   </data>
   <data name="Detail_Genus" xml:space="preserve">
-    <value>Thuộc Chi: </value>
+    <value>Chi: </value>
   </data>
   <data name="Detail_Distribution" xml:space="preserve">
     <value>Phân Bố: </value>
@@ -99,5 +99,23 @@
   </data>
   <data name="Detail_Convervation_Status" xml:space="preserve">
     <value>Tình Trạng Bảo Tồn: </value>
+  </data>
+  <data name="Detail_Class" xml:space="preserve">
+    <value>Lớp:</value>
+  </data>
+  <data name="Detail_Family" xml:space="preserve">
+    <value>Họ:</value>
+  </data>
+  <data name="Detail_Kingdom" xml:space="preserve">
+    <value>Giới:</value>
+  </data>
+  <data name="Detail_Order" xml:space="preserve">
+    <value>Bộ:</value>
+  </data>
+  <data name="Detail_PhylumDivisio" xml:space="preserve">
+    <value>Ngành:</value>
+  </data>
+  <data name="Detail_Status" xml:space="preserve">
+    <value>Tình trạng bảo tồn:</value>
   </data>
 </root>

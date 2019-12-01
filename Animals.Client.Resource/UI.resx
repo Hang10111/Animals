@@ -100,4 +100,22 @@
   <data name="Detail_Convervation_Status" xml:space="preserve">
     <value>Convervation Status: </value>
   </data>
+  <data name="Detail_Class" xml:space="preserve">
+    <value>Class:</value>
+  </data>
+  <data name="Detail_Family" xml:space="preserve">
+    <value>Family:</value>
+  </data>
+  <data name="Detail_Kingdom" xml:space="preserve">
+    <value>Kingdom:</value>
+  </data>
+  <data name="Detail_Order" xml:space="preserve">
+    <value>Order:</value>
+  </data>
+  <data name="Detail_PhylumDivisio" xml:space="preserve">
+    <value>PhylumDivisio:</value>
+  </data>
+  <data name="Detail_Status" xml:space="preserve">
+    <value>Status:</value>
+  </data>
 </root>

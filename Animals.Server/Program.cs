@@ -19,7 +19,7 @@ namespace Animals.Server
                 .Build();
             var scope = host.Services.CreateScope();
             var services = scope.ServiceProvider;
-            var context = services.GetRequiredService<bao_ton_tnContext>();
+            var context = services.GetRequiredService<id11168955_bao_ton_tnContext>();
             DataBaseService.Create(context);
             host.Run();
         }

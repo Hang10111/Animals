@@ -4,4 +4,5 @@
              x:Class="Animals.Client.Resources.Color">
     <Color x:Key="BgColor">#F5F5F5</Color>
     <Color x:Key="TitleColor">#4F4F4F</Color>
+    <Color x:Key="BigTitleColor">#008B45</Color>
 </ResourceDictionary>

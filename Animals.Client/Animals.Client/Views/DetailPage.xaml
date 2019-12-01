@@ -2,27 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Animals.Client.Xamarin"
+             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:stringResource="clr-namespace:Animals.Client.Resource;assembly=Animals.Client.Resource"
              x:Class="Animals.Client.Views.DetailPage"
              Title="{Binding Title}">
     <StackLayout>
         <ScrollView>
             <StackLayout  BackgroundColor="{StaticResource BgColor}">
-                <Image Source ="{Binding ImageURL}"   
-                       x:Name="img"
-                       WidthRequest="310"
-                       HeightRequest  ="250" 
-                       Aspect ="Fill"
-                       HorizontalOptions="Fill"></Image>
-                <StackLayout Padding="10" >
+                <StackLayout>
+                    <Label Text="THÔNG TIN CHUNG" Style ="{StaticResource BigTitleStyle}"/>
                     <Label Text="{Static stringResource:UI.Detail_Science_Name}"  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenKh}"/>
                     <Label Text="{Static stringResource:UI.Detail_Normal_Name}"  Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenThuong}"/>
                     <Label Text="{Static stringResource:UI.Detail_English_Name}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding TenTiengAnh}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Kingdom}" Style="{StaticResource TitleStyle}" />
+
+                    <Label Text="{Static stringResource:UI.Detail_PhylumDivisio}" Style="{StaticResource TitleStyle}" />
+
+                    <Label Text="{Static stringResource:UI.Detail_Class}" Style="{StaticResource TitleStyle}" />
+
+                    <Label Text="{Static stringResource:UI.Detail_Order}" Style="{StaticResource TitleStyle}" />
+
+                    <Label Text="{Static stringResource:UI.Detail_Family}" Style="{StaticResource TitleStyle}" />
+
                     <Label Text="{Static stringResource:UI.Detail_Genus}" Style="{StaticResource TitleStyle}" />
                     <Label Text="{Binding ThuocChi}"/>
+                    <Label Text="{Static stringResource:UI.Detail_Status}"  Style="{StaticResource TitleStyle}"/>
+                    <Label Text="{Binding TTBaoTon}"/>
+                    <Label Text="THÔNG TIN CHI TIẾT" Style ="{StaticResource BigTitleStyle}"/>
                     <Label Text="{Static stringResource:UI.Detail_Distribution}" Style="{StaticResource TitleStyle}"/>
                     <Label Text="{Binding PhanBo}"/>
                     <Label Text="{Static stringResource:UI.Detail_Morphological_Characteristics}" Style="{StaticResource TitleStyle}"/>

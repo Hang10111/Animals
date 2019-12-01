@@ -44,6 +44,12 @@
             }
         }
         
+        public static string Detail_Class {
+            get {
+                return ResourceManager.GetString("Detail_Class", resourceCulture);
+            }
+        }
+        
         public static string Detail_Color_Condition {
             get {
                 return ResourceManager.GetString("Detail_Color_Condition", resourceCulture);
@@ -80,9 +86,21 @@
             }
         }
         
+        public static string Detail_Family {
+            get {
+                return ResourceManager.GetString("Detail_Family", resourceCulture);
+            }
+        }
+        
         public static string Detail_Genus {
             get {
                 return ResourceManager.GetString("Detail_Genus", resourceCulture);
+            }
+        }
+        
+        public static string Detail_Kingdom {
+            get {
+                return ResourceManager.GetString("Detail_Kingdom", resourceCulture);
             }
         }
         
@@ -104,6 +122,19 @@
             }
         }
         
+        /// </summary>
+        public static string Detail_Order {
+            get {
+                return ResourceManager.GetString("Detail_Order", resourceCulture);
+            }
+        }
+        
+        public static string Detail_PhylumDivisio {
+            get {
+                return ResourceManager.GetString("Detail_PhylumDivisio", resourceCulture);
+            }
+        }
+        
         public static string Detail_Reproductive_Behavior {
             get {
                 return ResourceManager.GetString("Detail_Reproductive_Behavior", resourceCulture);
@@ -116,6 +147,12 @@
             }
         }
 
+        public static string Detail_Status {
+            get {
+                return ResourceManager.GetString("Detail_Status", resourceCulture);
+            }
+        }
+        
         public static string Detail_Worth_Using {
             get {
                 return ResourceManager.GetString("Detail_Worth_Using", resourceCulture);
