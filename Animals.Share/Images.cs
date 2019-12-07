@@ -10,5 +10,10 @@ namespace Animals.Share
         public string ImgPath { get; set; }
 
         public News News { get; set; }
+
+        public object Replace(string v1, string v2)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

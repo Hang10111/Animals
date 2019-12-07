@@ -21,6 +21,7 @@ namespace Animals.Client
             containerRegistry.RegisterForNavigation<HomePage>("Home");
             containerRegistry.RegisterForNavigation<DetailPage>("Detail");
             containerRegistry.RegisterForNavigation<ScannerPage>("Scanner");
+            containerRegistry.RegisterForNavigation<FilterPage>("Filter");
         }
     }
 }

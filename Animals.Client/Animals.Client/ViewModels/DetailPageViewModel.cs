@@ -1,6 +1,8 @@
 ﻿using Animals.Client.Models;
 using Animals.Share;
+using CarouselView.FormsPlugin.Abstractions;
 using Prism.Navigation;
+using System.Collections.ObjectModel;
 
 namespace Animals.Client.ViewModels
 {

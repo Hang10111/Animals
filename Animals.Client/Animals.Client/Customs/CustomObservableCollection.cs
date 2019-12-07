@@ -34,6 +34,7 @@ namespace Animals.Client.Customs
                     }
                 }
                 _isNotNotify = false;
+                OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
             }
         }
 

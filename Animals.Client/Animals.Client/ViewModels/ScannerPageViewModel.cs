@@ -40,19 +40,12 @@ namespace Animals.Client.ViewModels
             get => _result;
             set => SetProperty(ref _result, value);
         }
-
-
-        //private readonly INavigationService _navigationService;
-        //private readonly IPageDialogService _pageDialogue;
         private readonly IDeviceService _deviceService;
-
 
         private bool _isTurnOnFlash;
 
         public ScannerPageViewModel(INavigationService navigationService, IDeviceService deviceService) : base(navigationService)
         {
-            //_navigationService = navigationService;
-            //_pageDialogue = pageDialogService;
             _deviceService = deviceService;
             Title = "Scan";
             TurnOnFlashCommand = new DelegateCommand(HandleTurnOnFlashCommand);

@@ -1,6 +1,9 @@
 ﻿using Animals.Share;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Animals.Client.Models
 {
@@ -26,6 +29,7 @@ namespace Animals.Client.Models
         public ObservableCollection<Location> Locations => _locations;
         public string ShortName => _shortName;
         public string AvatarUrl { get; set; }
+        public static object VietNamChar { get; private set; }
 
         private readonly ObservableCollection<Location> _locations;
         private readonly string _shortName;
@@ -36,21 +40,45 @@ namespace Animals.Client.Models
 
         public AnimalItem(Species sinhVat, ObservableCollection<Images> hinhs, ObservableCollection<Location> location)
         {
-            _sinhVat = sinhVat;
-            _hinh = hinhs;
+            _sinhVat = sinhVat ?? new Species();
+            //var newhinh = _hinh.Select(x => x.Replace("\r\n", "")).ToList();
             _locations = location;
-            _shortName = TenKh[0].ToString().ToUpper();
+            _shortName = !string.IsNullOrEmpty(TenKh) ? TenKh[0].ToString().ToLower() : string.Empty;
             AvatarUrl = _hinh.FirstOrDefault()?.ImgPath;
         }
-
         public bool IsContainsText(string text)
         {
+
+            var result = false;
             if (string.IsNullOrWhiteSpace(text))
             {
-                return true;
+                result = true;
             }
-            text = text.Trim();
-            return TenKh.ToLower().Contains(text.ToLower()) || TenTiengAnh.Contains(text.ToLower()) || TenThuong.Contains(text.ToLower());
+            else
+            {
+                if (text.ToLower().Contains(TenKh?.ToLower() ?? string.Empty) && text.ToLower().Contains(TenThuong?.ToLower() ?? string.Empty))
+                {
+                    result = true;
+                }
+                else if (!text.ToLower().Contains(TenKh?.ToLower() ?? string.Empty) && !text.ToLower().Contains(TenThuong?.ToLower() ?? string.Empty))
+                {
+                    text = text.Trim();
+                    result = TenKh.ToLower().Contains(text.ToLower()) || TenThuong.ToLower().Contains(text.ToLower());
+                }
+                else if (!text.ToLower().Contains(TenKh?.ToLower() ?? string.Empty) && text.ToLower().Contains(TenThuong?.ToLower() ?? string.Empty))
+                {
+                    text = text.Trim();
+                    result = TenKh.ToLower().Contains(text.ToLower());
+                }
+                else if (text.ToLower().Contains(TenKh?.ToLower() ?? string.Empty) && !text.ToLower().Contains(TenThuong?.ToLower() ?? string.Empty))
+                {
+                    text = text.Trim();
+                    result = TenThuong.ToLower().Contains(text.ToLower());
+                }
+
+            }
+            return result;
         }
     }
+    
 }

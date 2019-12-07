@@ -15,6 +15,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Scan QRCode"
                      Command="{Binding ScanQRCommand}"/>
+        <ToolbarItem Text="Filter"
+                     Command="{Binding FilterCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
@@ -32,7 +34,7 @@
                                    Text="{Binding TenKh}" TextColor="#00405d" Height="18"
                                    Command="{Binding BindingContext.ShowDetailCommand, Source={x:Reference Home}}"
                                    CommandParameter="{Binding .}"
-                                   Detail="{Binding TenTiengAnh}" />
+                                   Detail="{Binding TenThuong}" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Footer>

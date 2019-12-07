@@ -26,7 +26,7 @@ namespace Animals.Client.ViewModels
                 var animalItems = AnimalItemModels?.Where(item =>
                 item.IsContainsText(SearchText))
                 .OrderBy(item => item.ShortName)
-                .ThenBy(item => item.TenTiengAnh)
+                .ThenBy(item => item.TenThuong)
                 .GroupBy(item => item.ShortName);
                 result.Replace(animalItems);
                 return result;
@@ -34,6 +34,7 @@ namespace Animals.Client.ViewModels
         }
 
         public ICommand ScanQRCommand { get; private set; }
+        public ICommand FilterCommand { get; private set; }
         public ICommand ShowDetailCommand { get; private set; }
         public ICommand RefreshCommand { get; private set; }
         
@@ -65,6 +66,7 @@ namespace Animals.Client.ViewModels
         private void InitializeCommand()
         {
             ScanQRCommand = new DelegateCommand(HandleScanQRCommand);
+            FilterCommand = new DelegateCommand<AnimalItem>(HandleFilterCommand);
             RefreshCommand = new DelegateCommand(HandleRefreshCommand);
             ShowDetailCommand = new DelegateCommand<AnimalItem>(HandleShowDetailCommand);
         }
@@ -93,5 +95,12 @@ namespace Animals.Client.ViewModels
         {
             NavigationService.NavigateAsync("Scanner");
         }
+        private void HandleFilterCommand(AnimalItem Object)
+        {
+            var p = new NavigationParameters();
+            p.Add("sinhvat", Object);
+            NavigationService.NavigateAsync("Filter");
+        }
+
     }
 }

@@ -1,0 +1,9 @@
+diff a/Animals.Client/Animals.Client/Views/DetailPage.xaml b/Animals.Client/Animals.Client/Views/DetailPage.xaml	(rejected hunks)
+@@ -2,6 +2,7 @@
+ <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:forms="clr-namespace:Animals.Client.Xamarin"
++             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+              xmlns:stringResource="clr-namespace:Animals.Client.Resource;assembly=Animals.Client.Resource"
+              x:Class="Animals.Client.Views.DetailPage"
+              Title="{Binding Title}">

@@ -2,13 +2,34 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:Animals.Client.Xamarin"
-             xmlns:cv="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              xmlns:stringResource="clr-namespace:Animals.Client.Resource;assembly=Animals.Client.Resource"
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              x:Class="Animals.Client.Views.DetailPage"
              Title="{Binding Title}">
+    
     <StackLayout>
         <ScrollView>
             <StackLayout  BackgroundColor="{StaticResource BgColor}">
+                <controls:CarouselViewControl Orientation="Horizontal" 
+                                              HeightRequest="300"
+                                              InterPageSpacing="10" 
+                                              Position="{Binding myPosition}" 
+                                              ItemsSource="{Binding ImageURL}" 
+                                              VerticalOptions="FillAndExpand" 
+                                              HorizontalOptions="FillAndExpand"
+                                              IndicatorsTintColor="Silver"
+                                              ShowArrows="False"
+                                              ShowIndicators="True"
+                                              CurrentPageIndicatorTintColor="RosyBrown">
+                    <controls:CarouselViewControl.ItemTemplate >
+                        <DataTemplate>
+                            <ContentView>
+                                <Image Source="{Binding ImgPath}" Aspect="AspectFit">
+                                </Image>
+                            </ContentView>
+                        </DataTemplate>
+                    </controls:CarouselViewControl.ItemTemplate>
+                </controls:CarouselViewControl>
                 <StackLayout>
                     <Label Text="THÔNG TIN CHUNG" Style ="{StaticResource BigTitleStyle}"/>
                     <Label Text="{Static stringResource:UI.Detail_Science_Name}"  Style="{StaticResource TitleStyle}"/>
